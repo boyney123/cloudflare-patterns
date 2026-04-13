@@ -1,0 +1,13 @@
+.claude/
+docs/
+
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+*.log
+.DS_Store
+dist/
+*.tsbuildinfo
