@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>RoomRaider UI Artifact</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 32px;
+			background: #07110d;
+			color: #d9ffe7;
+			font-family: "IBM Plex Mono", Consolas, monospace;
+		}
+		article {
+			max-width: 760px;
+			margin: 0 auto;
+			padding: 24px;
+			border: 1px solid rgba(73, 145, 111, 0.28);
+			border-radius: 16px;
+			background: rgba(9, 23, 18, 0.92);
+		}
+		code {
+			padding: 2px 6px;
+			border-radius: 6px;
+			background: rgba(18, 41, 31, 0.98);
+		}
+		a { color: #9ef7b5; }
+	</style>
+</head>
+<body>
+	<article>
+		<h1>RoomRaider</h1>
+		<p>
+			This repository serves the terminal UI from <code>src/ui.ts</code> so the Worker can
+			return one self-contained HTML shell for <code>/</code>, <code>/room/:roomId</code>,
+			and <code>/player</code>.
+		</p>
+		<p>
+			The live application UI is the string exported by <code>src/ui.ts</code>. This file is
+			kept as a lightweight artifact so the requested <code>index.html</code> exists in the
+			pattern directory and points readers to the real embedded shell.
+		</p>
+		<p>
+			See <a href="./README.md">README.md</a> for the architecture walkthrough.
+		</p>
+	</article>
+</body>
+</html>

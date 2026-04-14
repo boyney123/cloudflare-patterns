@@ -1,0 +1,51 @@
+/**
+ * RoomRaider
+ *
+ * This demo uses three trusted Durable Objects:
+ * - PlayerSupervisor: player inventory and exploration stats
+ * - RoomSupervisor: immutable shared room definitions
+ * - AppRunner: dynamic room facet loader and per-user facet orchestration
+ *
+ * The room behaviour itself is not imported statically. Each room type is
+ * loaded through the Worker Loader API so the README and code can point to a
+ * concrete Dynamic Workers example rather than a switch statement.
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "roomraider",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-04-13",
+	"observability": {
+		"enabled": true
+	},
+	"ai": {
+		"binding": "AI"
+	},
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "PLAYER_SUPERVISOR",
+				"class_name": "PlayerSupervisor"
+			},
+			{
+				"name": "ROOM_SUPERVISOR",
+				"class_name": "RoomSupervisor"
+			},
+			{
+				"name": "APP_RUNNER",
+				"class_name": "AppRunner"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["PlayerSupervisor", "RoomSupervisor", "AppRunner"]
+		}
+	],
+	"worker_loaders": [
+		{
+			"binding": "LOADER"
+		}
+	]
+}
