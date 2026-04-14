@@ -1,0 +1,36 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "queue-claim-check",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-04-14",
+	"observability": {
+		"enabled": true
+	},
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"r2_buckets": [
+		{ "binding": "PAYLOADS", "bucket_name": "claim-check-payloads" }
+	],
+	"kv_namespaces": [
+		{ "binding": "EVENTS", "id": "claim-check-events" }
+	],
+	"queues": {
+		"producers": [
+			{ "binding": "JOBS", "queue": "claim-check-jobs" }
+		],
+		"consumers": [
+			{
+				"queue": "claim-check-jobs",
+				"max_batch_size": 10,
+				"max_batch_timeout": 5,
+				"max_retries": 3,
+				"dead_letter_queue": "claim-check-jobs-dlq"
+			}
+		]
+	}
+}
